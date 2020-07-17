@@ -21,4 +21,20 @@ To use locally all you have to do is clone the repo, install dependencies and cr
 
 ## Development
 
-- [x] This is a complete item
+### BackEnd
+
+- [x] Configure express with middleware
+- [x] Limit POST frequency for security
+- [x] Implement pagination
+- [x] Configure and connect to mongoDB
+- [x] Create validation for entries
+- [x] Serve static files of client
+
+### FrontEnd
+
+- [x] Ability to add message
+- [x] Show all messages from database with time, name and text
+- [x] Use pagination from backend
+- [x] Do some simple styling without framework
+- [x] Responsivness, mobile first approach
+
