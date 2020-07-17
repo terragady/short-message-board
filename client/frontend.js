@@ -1,4 +1,5 @@
 const form = document.querySelector('form');
+const messageInput = document.querySelector('#message-input');
 const loading = document.querySelector('.loading');
 const messages = document.querySelector('.messages');
 const showMore = document.querySelector('#show-more');
@@ -31,6 +32,9 @@ const init = (reset = true) => {
     })
     // eslint-disable-next-line no-undef
     .catch(() => swal('some error'));
+    if (reset) {
+    messageInput.focus()}
+
 };
 
 init();
@@ -42,6 +46,7 @@ showMore.addEventListener('click', () => {
 
 form.addEventListener('submit', e => {
   e.preventDefault();
+  
   const formData = new FormData(form);
   const message = {
     message: formData.get('message-input'),
@@ -65,7 +70,6 @@ form.addEventListener('submit', e => {
       swal('Too many requests!');
       form.style.display = '';
       messages.innerHTML = '';
-
       init();
     });
 });
