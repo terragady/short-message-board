@@ -29,6 +29,7 @@ To use locally all you have to do is clone the repo, install dependencies and cr
 - [x] Configure and connect to mongoDB
 - [x] Create validation for entries
 - [x] Serve static files of client
+- [ ] Refactor
 
 ### FrontEnd
 
@@ -37,4 +38,5 @@ To use locally all you have to do is clone the repo, install dependencies and cr
 - [x] Use pagination from backend
 - [x] Do some simple styling without framework
 - [x] Responsivness, mobile first approach
+- [ ] Refactor
 
