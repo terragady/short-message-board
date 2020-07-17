@@ -4,11 +4,9 @@ const dotenv = require('dotenv');
 const morgan = require('morgan');
 const BodyParser = require('body-parser');
 const cors = require('cors');
+const rateLimit = require('express-rate-limit');
 const connectDB = require('./config/db');
 const Message = require('./models/message');
-const rateLimit = require('express-rate-limit')
-
-
 
 // Load config
 dotenv.config({ path: './config/config.env' });
@@ -32,12 +30,28 @@ app.use(cors());
 app.use(BodyParser.json());
 
 app.get('/messages', (req, res) => {
-  Message.find()
-    .sort({ createdAt: -1 })
-    .then(mess => res.json(mess));
+  let { skip = 0, limit = 10 } = req.query;
+  skip = Number(skip);
+  limit = Number(limit);
+
+  Promise.all([Message.countDocuments(),
+    Message.find().skip(skip).limit(limit).sort({ createdAt: -1 })])
+    // .sort({ createdAt: -1 })
+    .then(([total, messages]) => {
+      res.json({
+        messages,
+        pagination: {
+          total,
+          skip,
+          limit,
+          left: total - (skip + limit) > 0,
+
+        }
+      });
+    });
 });
 
-// app.use(rateLimit({ windowMs: 30 * 1000, max: 1 })); // 1 request every 30 seconds
+// app.use('/messages', rateLimit({ windowMs: 30 * 1000, max: 1 })); // 1 request every 30 seconds
 
 app.post('/messages', (req, res, next) => {
   const { name, message } = req.body;

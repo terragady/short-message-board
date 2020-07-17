@@ -1,31 +1,51 @@
 const form = document.querySelector('form');
 const loading = document.querySelector('.loading');
 const messages = document.querySelector('.messages');
+const showMore = document.querySelector('#show-more');
+let skip = 0;
+let limit = 5;
 
-const init = () => {
-  fetch('/messages')
+const init = (reset = true) => {
+  if (reset) {
+    messages.innerHTML = '';
+    skip = 0;
+  }
+  fetch('http://localhost:5000/messages' + '?skip=' + skip + '&limit=' + limit)
     .then(res => res.json())
     .then(res => {
-      res.forEach(e => {
+      res.messages.forEach(e => {
         messages.innerHTML += `
         <div class="message">
-        <p>${e.name}</p>
-        <p>${e.message}</p>
-        <p>${(new Date(e.createdAt)).toLocaleString('en-GB', { hour12: false })}</p>
+        <p class="p-name">${e.name}</p>
+        <p class="p-message">${e.message}</p>
+        <p class="p-date">${(new Date(e.createdAt)).toLocaleString('en-GB', { hour12: false })}</p>
         `;
       });
+      
       loading.style.display = 'none';
-    });
+      if (!res.pagination.left) {
+        showMore.style.display = 'none';
+      } else {
+        showMore.style.display = 'block';
+      }
+    })
+    // eslint-disable-next-line no-undef
+    .catch(() => swal('some error'));
 };
 
 init();
+
+showMore.addEventListener('click', () => {
+  skip += limit;
+  init(false);
+});
 
 form.addEventListener('submit', e => {
   e.preventDefault();
   const formData = new FormData(form);
   const message = {
     message: formData.get('message-input'),
-    name: formData.get('name'),
+    name: formData.get('name-input'),
   };
   form.style.display = 'none';
   loading.style.display = 'block';
@@ -33,15 +53,19 @@ form.addEventListener('submit', e => {
   fetch('/messages', {
     method: 'POST',
     body: JSON.stringify(message),
-    headers: { 'content-type': 'application/json' }
+    headers: { 'content-type': 'application/json' },
   }).then(res => res.json())
-    .then(message => {
+    .then(() => {
       form.reset();
-      setTimeout(() => {
-        form.style.display = '';
-      }, 30000);
+      form.style.display = '';
       messages.innerHTML = '';
+      init();
+    }).catch(() => {
+      // eslint-disable-next-line no-undef
+      swal('Too many requests!');
+      form.style.display = '';
+      messages.innerHTML = '';
+
       init();
     });
 });
-

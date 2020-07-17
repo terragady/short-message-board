@@ -17,15 +17,20 @@
       <div class="form">
         <label for="message-input">Message:</label>
         <textarea type="text" name="message-input" id="message-input" required maxlength="150" rows="3"></textarea>
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required>
+        <label for="name-input">Name:</label>
+        <input type="text" id="name-input" name="name-input" required>
       </div>
-        <button class="submit-btn">Add</button>
+      <button class="submit-btn">Add</button>
     </form>
     <p class="loading">Loading...</p>
     <div class="messages"></div>
+    <div class="show-more" id="show-more">
+      <button class="show-more-btn">Show More</button>
+    </div>
   </main>
   <script src="./frontend.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 </body>
 
 </html>
