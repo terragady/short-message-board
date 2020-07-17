@@ -44,7 +44,6 @@ app.get('/messages', (req, res) => {
           skip,
           limit,
           left: total - (skip + limit) > 0,
-
         },
       });
     });
