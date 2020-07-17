@@ -42,7 +42,7 @@ ul, li, h1, p {
 .loading {
   margin: 100px auto;
   text-align: center;
-  display: none;
+  display: block;
 }
 
 textarea {

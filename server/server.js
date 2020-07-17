@@ -3,9 +3,11 @@ const path = require('path');
 const dotenv = require('dotenv');
 const morgan = require('morgan');
 const BodyParser = require('body-parser');
-const connectDB = require('./config/db');
 const cors = require('cors');
+const connectDB = require('./config/db');
 const Message = require('./models/message');
+const rateLimit = require('express-rate-limit')
+
 
 
 // Load config
@@ -22,23 +24,23 @@ if (process.env.NODE_ENV === 'development') {
 
 // static folder
 
-app.use(express.static(path.join(__dirname, 'client')));
+app.use(express.static(path.join(__dirname, '../client')));
 
 // middleware
 
 app.use(cors());
 app.use(BodyParser.json());
 
-
-app.get('/', (req, res) => {
+app.get('/messages', (req, res) => {
   Message.find()
-    .sort({ createdAt: 1 })
+    .sort({ createdAt: -1 })
     .then(mess => res.json(mess));
 });
 
-app.post('/', (req, res, next) => {
+// app.use(rateLimit({ windowMs: 30 * 1000, max: 1 })); // 1 request every 30 seconds
+
+app.post('/messages', (req, res, next) => {
   const { name, message } = req.body;
-  console.log(name);
   const newMessage = new Message({
     name, message,
   });
