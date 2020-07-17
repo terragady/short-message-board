@@ -32,9 +32,9 @@ const init = (reset = true) => {
     })
     // eslint-disable-next-line no-undef
     .catch(() => swal('some error'));
-    if (reset) {
-    messageInput.focus()}
-
+  if (reset) {
+    messageInput.focus();
+  }
 };
 
 init();
@@ -46,7 +46,7 @@ showMore.addEventListener('click', () => {
 
 form.addEventListener('submit', e => {
   e.preventDefault();
-  
+
   const formData = new FormData(form);
   const message = {
     message: formData.get('message-input'),

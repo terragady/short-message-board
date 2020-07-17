@@ -1,7 +1,6 @@
 const express = require('express');
 const path = require('path');
 const dotenv = require('dotenv');
-const morgan = require('morgan');
 const BodyParser = require('body-parser');
 const cors = require('cors');
 const rateLimit = require('express-rate-limit');
@@ -9,16 +8,14 @@ const connectDB = require('./config/db');
 const Message = require('./models/message');
 
 // Load config
+
 dotenv.config({ path: './config/config.env' });
+
+// connect DB
 
 connectDB();
 
 const app = express();
-
-// logging
-if (process.env.NODE_ENV === 'development') {
-  app.use(morgan('dev'));
-}
 
 // static folder
 
@@ -28,6 +25,9 @@ app.use(express.static(path.join(__dirname, '../client')));
 
 app.use(cors());
 app.use(BodyParser.json());
+app.use('/messages', rateLimit({ windowMs: 30 * 1000, max: 1 })); // 1 request every 30 seconds
+
+// routes
 
 app.get('/messages', (req, res) => {
   let { skip = 0, limit = 10 } = req.query;
@@ -50,8 +50,6 @@ app.get('/messages', (req, res) => {
       });
     });
 });
-
-app.use('/messages', rateLimit({ windowMs: 30 * 1000, max: 1 })); // 1 request every 30 seconds
 
 app.post('/messages', (req, res, next) => {
   const { name, message } = req.body;
