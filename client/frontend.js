@@ -3,14 +3,14 @@ const loading = document.querySelector('.loading');
 const messages = document.querySelector('.messages');
 const showMore = document.querySelector('#show-more');
 let skip = 0;
-let limit = 5;
+const limit = 5;
 
 const init = (reset = true) => {
   if (reset) {
     messages.innerHTML = '';
     skip = 0;
   }
-  fetch('http://localhost:5000/messages' + '?skip=' + skip + '&limit=' + limit)
+  fetch(`/messages?skip=${skip}&limit=${limit}`)
     .then(res => res.json())
     .then(res => {
       res.messages.forEach(e => {
@@ -21,7 +21,7 @@ const init = (reset = true) => {
         <p class="p-date">${(new Date(e.createdAt)).toLocaleString('en-GB', { hour12: false })}</p>
         `;
       });
-      
+
       loading.style.display = 'none';
       if (!res.pagination.left) {
         showMore.style.display = 'none';
