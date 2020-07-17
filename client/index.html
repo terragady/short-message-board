@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Short Message Board</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+  <header>
+    <h1>Short Message Board</h1>
+  </header>
+  <main class="main">
+    <form class="form-wrapper">
+      <div class="form">
+        <label for="message">Message:</label>
+        <textarea type="text" name="message" id="message" required maxlength="150" rows="3"></textarea>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+      </div>
+        <button class="submit-btn">Add</button>
+    </form>
+    <p class="loading">Loading...</p>
+  </main>
+  <script src="./frontend.js"></script>
+</body>
+
+</html>
