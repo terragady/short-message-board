@@ -1,0 +1,20 @@
+{
+  "name": "short-message-board",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npm i --prefix client  && npm i --prefix server && npm start --prefix server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/terragady/short-message-board.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/terragady/short-message-board/issues"
+  },
+  "homepage": "https://github.com/terragady/short-message-board#readme"
+}
