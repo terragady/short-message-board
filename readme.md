@@ -17,7 +17,7 @@ App is deployed on heroku based on last master branch commit [https://messaging-
 
 ## Usage
 
-To use locally all you have to do is clone the repo, install dependencies and create *config.env* file with credencials to your database
+To use locally all you have to do is clone the repo, install dependencies and create `config.env` file with credencials to your database
 
 ## Development
 
