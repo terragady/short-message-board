@@ -25,7 +25,6 @@ app.use(express.static(path.join(__dirname, '../client')));
 
 app.use(cors());
 app.use(BodyParser.json());
-app.use('/messages', rateLimit({ windowMs: 30 * 1000, max: 1 })); // 1 request every 30 seconds
 
 // routes
 
@@ -50,6 +49,10 @@ app.get('/messages', (req, res) => {
       });
     });
 });
+
+// posting limiter
+
+app.use('/messages', rateLimit({ windowMs: 30 * 1000, max: 1 })); // 1 request every 30 seconds
 
 app.post('/messages', (req, res, next) => {
   const { name, message } = req.body;
