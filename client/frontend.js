@@ -67,7 +67,7 @@ form.addEventListener('submit', e => {
       init();
     }).catch(() => {
       // eslint-disable-next-line no-undef
-      swal('Too many requests!');
+      swal('Too many requests! \n You can post only one in 30 seconds.');
       form.style.display = '';
       messages.innerHTML = '';
       init();
