@@ -1,5 +1,5 @@
 
-# Simple messageing app
+# Simple messaging app
 ![GitHub last commit](https://img.shields.io/github/last-commit/terragady/short-message-board)
 ![GitHub language count](https://img.shields.io/github/languages/count/terragady/short-message-board)
 ![GitHub top language](https://img.shields.io/github/languages/top/terragady/short-message-board)
