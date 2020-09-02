@@ -31,7 +31,7 @@ const init = (reset = true) => {
       }
     })
     // eslint-disable-next-line no-undef
-    .catch(() => swal('some error'));
+    .catch(() => swal('some error happened'));
   if (reset) {
     messageInput.focus();
   }

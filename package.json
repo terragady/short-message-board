@@ -5,6 +5,7 @@
   "main": "server/server.js",
   "scripts": {
     "start": "node server/server.js",
+    "server": "nodemon server/server.js",
     "lint": "eslint ."
   },
   "repository": {

@@ -9,7 +9,7 @@ const Message = require('./models/message');
 
 // Load config
 
-dotenv.config({ path: './config/config.env' });
+dotenv.config({ path: './server/config/config.env' });
 
 // connect DB
 
@@ -21,7 +21,7 @@ const app = express();
 
 app.use(express.static(path.join(__dirname, '../client')));
 
-// middleware
+// middleware 
 
 app.use(cors());
 app.use(BodyParser.json());
@@ -35,7 +35,6 @@ app.get('/messages', (req, res) => {
 
   Promise.all([Message.countDocuments(),
     Message.find().skip(skip).limit(limit).sort({ createdAt: -1 })])
-    // .sort({ createdAt: -1 })
     .then(([total, messages]) => {
       res.json({
         messages,

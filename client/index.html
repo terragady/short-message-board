@@ -1,36 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Short Message Board</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Short Message Board</title>
-  <link rel="stylesheet" href="./style.css">
-</head>
-
-<body>
-  <header>
-    <h1>Short Message Board</h1>
-  </header>
-  <main class="main">
-    <form class="form-wrapper">
-      <div class="form">
-        <label for="message-input">Message:</label>
-        <textarea type="text" name="message-input" id="message-input" required maxlength="150" rows="3" autofocus></textarea>
-        <label for="name-input">Name:</label>
-        <input type="text" id="name-input" name="name-input" required>
+  <body>
+    <header>
+      <h1>Short Message Board</h1>
+    </header>
+    <main class="main">
+      <form class="form-wrapper">
+        <div class="form">
+          <label for="message-input">Message:</label>
+          <textarea
+            type="text"
+            name="message-input"
+            id="message-input"
+            required
+            maxlength="150"
+            rows="4"
+            autofocus
+          ></textarea>
+          <label for="name-input">Name:</label>
+          <input type="text" id="name-input" name="name-input" required />
+        </div>
+        <button class="submit-btn">Add</button>
+      </form>
+      <p class="loading">Loading...</p>
+      <div class="messages"></div>
+      <div class="show-more" id="show-more">
+        <button class="show-more-btn">Show More</button>
       </div>
-      <button class="submit-btn">Add</button>
-    </form>
-    <p class="loading">Loading...</p>
-    <div class="messages"></div>
-    <div class="show-more" id="show-more">
-      <button class="show-more-btn">Show More</button>
-    </div>
-  </main>
-  <script src="./frontend.js"></script>
-  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
-</body>
-
+    </main>
+    <script src="./frontend.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  </body>
 </html>
