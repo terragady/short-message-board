@@ -9,7 +9,7 @@
 
 ## Description
 
-Simple app created with nodejs with express on backend and vanilla javascript with HTML and CSS on front end. Using mongoDB to store messages.
+Simple app created with nodejs with express framework with simple API on backend and vanilla javascript with HTML and CSS on front end. Using mongoDB to store messages which are automatically deleted after few days.
 
 ## Deployment
 
@@ -27,9 +27,9 @@ To use locally all you have to do is clone the repo, install dependencies and cr
 - [x] Limit POST frequency for security
 - [x] Implement pagination
 - [x] Configure and connect to mongoDB
-- [x] Create validation for entries
+- [x] Create validation for entries (Schema)
 - [x] Serve static files of client
-- [ ] Refactor
+- [ ] Refactor the code
 
 ### FrontEnd
 
@@ -38,5 +38,5 @@ To use locally all you have to do is clone the repo, install dependencies and cr
 - [x] Use pagination from backend
 - [x] Do some simple styling without framework
 - [x] Responsivness, mobile first approach
-- [ ] Refactor
+- [x] Refactor
 
